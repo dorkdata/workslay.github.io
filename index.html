@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkSlay - The Ultimate AI-First Feedback Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* New Natural/Claymorphic color scheme */
+        .gradient-text {
+            background: linear-gradient(90deg, #6d28d9, #c2410c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-bg {
+            background-color: #f5f3f1; /* Light beige background */
+        }
+        
+        /* Claymorphism style for cards/elements */
+        .clay-card {
+            background-color: #f5f3f1;
+            border-radius: 20px;
+            box-shadow: 
+                inset 5px 5px 10px #e0dedb, /* Inner shadow (light) */
+                inset -5px -5px 10px #ffffff, /* Inner shadow (dark) */
+                8px 8px 16px rgba(163, 177, 198, 0.6), /* Outer shadow */
+                -8px -8px 16px rgba(255, 255, 255, 1); /* Outer shadow */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .clay-card:hover {
+             transform: translateY(-5px);
+             box-shadow: 
+                inset 5px 5px 10px #e0dedb, 
+                inset -5px -5px 10px #ffffff,
+                12px 12px 24px rgba(163, 177, 198, 0.6), 
+                -12px -12px 24px rgba(255, 255, 255, 1);
+        }
+
+        .clay-button {
+            background-color: #f5f3f1;
+            border-radius: 12px;
+            box-shadow: 
+                5px 5px 10px #d1d9e6, 
+                -5px -5px 10px #ffffff;
+            transition: all 0.2s ease-in-out;
+        }
+        .clay-button:hover {
+            box-shadow: 
+                inset 2px 2px 5px #d1d9e6, 
+                inset -2px -2px 5px #ffffff;
+        }
+
+    </style>
+</head>
+<body class="bg-[#f5f3f1] text-gray-800">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-[#f5f3f1]/80 backdrop-blur-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <!-- Dabbing Logo with new color -->
+                <svg class="w-8 h-8 text-violet-800" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4C12 5.10457 11.1046 6 10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4Z" fill="currentColor"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.02568 7.24036C6.35711 6.94294 6.87789 6.97232 7.17531 7.30375L10.322 10.8251L12.9221 8.22502C13.215 7.93213 13.69 7.93213 13.9829 8.22502L17.7749 12.017C18.0678 12.3099 18.0678 12.7848 17.7749 13.0777C17.482 13.3706 17.0071 13.3706 16.7142 13.0777L13.4525 9.81604L10.7077 12.5608C10.4048 12.8637 9.91421 12.875 9.6      L6.30375 9.17531C6.00633 8.84388 6.03571 8.3231 6.36714 8.02568L8.0338 6.52568C8.36523 6.22826 8.88601 6.25764 9.18343 6.58907L10.0211 7.51921L8.82469 8.71562C8.5318 9.00852 8.05693 9.00852 7.76404 8.71562L6.70338 7.65496C6.39171 7.34329 5.88219 7.35529 5.58783 7.68412L4.21679 9.21206C3.89955 9.56583 3.92318 10.1009 4.27694 10.4182L9.44755 14.9547C9.79042 15.2582 10.2974 15.2674 10.6521 14.976L17.558 9.02396C17.8967 8.73036 18.3973 8.75624 18.7247 9.08362L19.7833 10.1422C20.1107 10.4696 20.0848 10.9702 19.7912 11.3089L13.6192 18.1149C13.3157 18.4178 12.8228 18.426 12.508 18.1325L9.67382 15.5251L9.0766 16.1223L11.332 18.3777C11.6249 18.6706 11.6249 19.1455 11.332 19.4384C11.0391 19.7313 10.5642 19.7313 10.2713 19.4384L7.61864 16.7857C7.32575 16.4928 6.85088 16.4928 6.55799 16.7857C6.2651 17.0786 6.2651 17.5535 6.55799 17.8464L8.7287 20.0171C9.02159 20.31 9.02159 20.7849 8.7287 21.0778C8.4358 21.3707 7.96093 21.3707 7.66804 21.0778L5.2251 18.6348C4.93221 18.3419 4.45734 18.3419 4.16445 18.6348C3.87155 18.9277 3.87155 19.4026 4.16445 19.6955L5.69625 21.2273C6.02868 21.5597 6.54946 21.5891 6.87688 21.2617L12.348 16.4749L13.0453 19.1328C13.1495 19.5447 13.5658 19.832 14.0034 19.7562C14.441 19.6803 14.7396 19.2629 14.6354 18.851L13.7846 15.6839L18.8675 19.8652C19.2213 20.1824 19.7564 20.1588 20.0736 19.805C20.3909 19.4513 20.3673 18.9162 20.0135 18.599L14.4201 13.623L19.0171 13.0258C19.4533 12.977 19.8184 12.6322 19.8436 12.1952C19.8687 11.7582 19.5532 11.3653 19.117 11.3165L14.0171 10.7287L18.983 6.36523C19.3283 6.06311 19.8427 6.09633 20.1448 6.44165C20.4469 6.78697 20.4137 7.3014 20.0684 7.60351L15.1025 11.967L15.7287 11.3408L18.9221 14.5342C19.215 14.8271 19.69 14.8271 19.9829 14.5342C20.2758 14.2413 20.2758 13.7664 19.9829 13.4735L16.2751 9.76569L14.5123 11.5285L14.9547 11.9709C15.2863 12.3025 15.8076 12.2863 16.1213 11.9348L17.9348 9.9348C18.2485 9.58327 18.2323 9.06198 17.8808 8.74828L15.9929 7.04531C15.6766 6.76292 15.2057 6.79036 14.9233 7.10665L13.4525 8.73036L11.1753 6.45313C10.8439 6.1217 10.3231 6.09232 10.0257 6.42375L6.82469 9.97604L6.02568 7.24036Z" fill="currentColor"/>
+                </svg>
+                <h1 class="text-2xl font-bold tracking-tighter">
+                    <span class="gradient-text">WorkSlay</span>
+                </h1>
+            </a>
+            <nav class="hidden md:flex items-center space-x-6 text-gray-700 font-medium">
+                <a href="#features" class="hover:text-violet-700 transition-colors">Features</a>
+                <a href="#synergy" class="hover:text-violet-700 transition-colors">Synergy</a>
+                <a href="#pricing" class="hover:text-violet-700 transition-colors">Pricing</a>
+            </nav>
+            <a href="#early-access" class="bg-violet-700 hover:bg-violet-800 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                Request Early Access
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero-bg">
+        <section class="container mx-auto px-6 py-24 text-center">
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4">
+                Unlock Your Organization's <span class="gradient-text">Hivemind</span>.
+            </h2>
+            <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 mb-8">
+                WorkSlay is the ultimate AI-first feedback engine. We unify customer reviews, employee engagement, alumni insights, and peer feedback into a single, intelligent, and actionable platform.
+            </p>
+            <div class="flex justify-center">
+                <a href="#early-access" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform hover:scale-105">
+                    Join the Waitlist
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Trust Bar -->
+    <div class="py-8">
+        <div class="container mx-auto px-6">
+            <h3 class="text-center text-gray-500 text-sm font-bold tracking-widest uppercase">
+                The All-In-One Feedback Platform
+            </h3>
+            <div class="flex flex-wrap justify-center items-center mt-4 space-x-8 text-gray-500">
+                <span class="font-semibold">Trustpilot</span>
+                <span class="font-semibold">Glassdoor</span>
+                <span class="font-semibold">Peakon</span>
+                <span class="font-semibold">Lattice</span>
+                <span class="font-semibold">Culture Amp</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 sm:py-28">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">The End of Siloed Feedback</h2>
+                <p class="max-w-2xl mx-auto mt-4 text-gray-600">
+                    Stop jumping between platforms. WorkSlay connects every feedback source to give you a complete, 360° view of your organization's health and performance.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Feature Cards with new clay style -->
+                <div class="clay-card p-6">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-200 text-violet-800 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V7a2 2 0 012-2h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H17z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Customer Feedback Hub</h3>
+                    <p class="text-gray-600">Aggregate and analyze customer sentiment from reviews, surveys, and support tickets. Understand what your market truly thinks.</p>
+                </div>
+                <div class="clay-card p-6">
+                     <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-200 text-violet-800 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Employee Voice Engine</h3>
+                    <p class="text-gray-600">Capture the pulse of your current team with engagement surveys, anonymous feedback channels, and performance check-ins.</p>
+                </div>
+                <div class="clay-card p-6">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-200 text-violet-800 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Ex-Employee & Alumni Insights</h3>
+                    <p class="text-gray-600">Learn from those who have left. Collect and analyze honest feedback from past employees to improve retention and culture.</p>
+                </div>
+                <div class="clay-card p-6">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-200 text-violet-800 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">360 & Peer Growth</h3>
+                    <p class="text-gray-600">Facilitate continuous growth with structured 360-degree reviews, manager feedback, and peer-to-peer recognition.</p>
+                </div>
+                <div class="clay-card p-6">
+                     <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-200 text-violet-800 mb-4">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="12" width="8" height="8" rx="2"/><path d="M12 12v8h4"/><path d="M20 12v-4h-4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">The AI Insight Engine</h3>
+                    <p class="text-gray-600">Our AI core analyzes trends, flags risks, identifies top performers, and provides actionable summaries, turning raw data into strategic wisdom.</p>
+                </div>
+                <div class="clay-card p-6">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-200 text-violet-800 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Objectives & Key Results</h3>
+                    <p class="text-gray-600">Connect feedback to performance. Set, track, and manage individual and team goals to ensure alignment and drive results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Synergy/Cross-Benefits Section -->
+    <section id="synergy" class="bg-[#edeae7] py-20 sm:py-28">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">From Silos to <span class="gradient-text">Synergy</span></h2>
+                <p class="max-w-3xl mx-auto mt-4 text-gray-600">
+                    WorkSlay doesn't just collect data—it connects it. Uncover the hidden patterns between your customers, team, and alumni that drive real business growth.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <!-- Synergy Cards -->
+                <div class="bg-[#f5f3f1] p-8 rounded-2xl">
+                     <div class="flex items-center justify-center h-16 w-16 rounded-full bg-orange-200 text-orange-800 mb-6 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg>
+                     </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Connect Team Morale to Customer Love</h3>
+                    <p class="text-gray-600">See how dips in team engagement directly predict drops in NPS scores. Get ahead of customer issues by first supporting your team.</p>
+                </div>
+                <div class="bg-[#f5f3f1] p-8 rounded-2xl">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-orange-200 text-orange-800 mb-6 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-3.5 0-7 2-7 5.5c0 2 2.5 4.5 7 4.5s7-2.5 7-4.5c0-3.5-3.5-5.5-7-5.5z"/><path d="M16 8.5l-2.3-2.3c-.5-.5-1.2-.5-1.7 0L10 8.5"/><path d="M12 2v4"/><path d="M18.5 6l-2 2"/><path d="M5.5 6l2 2"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Turn Alumni Warnings into Product Wins</h3>
+                    <p class="text-gray-600">Correlate ex-employee feedback about process friction with customer-reported product gaps. Often, your team's pain points are your customer's, too.</p>
+                </div>
+                <div class="bg-[#f5f3f1] p-8 rounded-2xl">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-orange-200 text-orange-800 mb-6 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.3.05-3.1S5.21 15.66 4.5 16.5z"/><path d="M18.5 2.5c1.26 1.5 5 2 5 2s-.5 3.74-2 5c-.84.71-2.3.7-3.1.05s-.86-2.35-.15-3.15z"/><path d="M19 10.5c-1.5-1.26-2-5-2-5s-3.74.5-5 2c-.71.84-.7 2.3-.05 3.1.65.8.86 2.35.15 3.15"/><path d="M5 13.5c1.5 1.26 2 5 2 5s3.74-.5 5-2c.71-.84.7-2.3.05-3.1-.65-.8-.86-2.35-.15-3.15"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Find the Vectors of Peak Performance</h3>
+                    <p class="text-gray-600">See how top-performers, identified via peer praise and 360s, are also the ones shipping features that get the best customer reviews. Replicate success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Early Access Section -->
+    <section id="early-access" class="py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="clay-card p-10 max-w-2xl mx-auto">
+                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Be The First to Experience WorkSlay</h2>
+                <p class="max-w-xl mx-auto mt-4 text-gray-600 mb-8">
+                    Sign up for our exclusive beta program. Help shape the future of organizational feedback and gain a competitive edge.
+                </p>
+                <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="you@company.com" required class="w-full flex-grow px-4 py-3 rounded-lg bg-white/70 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-violet-500 text-gray-800">
+                    <button type="submit" class="bg-violet-700 hover:bg-violet-800 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                        Request Access
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-20">
+        <div class="container mx-auto px-6 py-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center text-gray-500">
+            <p>&copy; 2024 WorkSlay. All rights reserved.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-gray-800">Privacy</a>
+                <a href="#" class="hover:text-gray-800">Terms</a>
+                <a href="#" class="hover:text-gray-800">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+
